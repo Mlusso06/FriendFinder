@@ -47,7 +47,7 @@ module.exports = function (app) {
         console.log(friends[i].name);        
         totalDifference = 0;
         console.log("Total Diff: " + totalDifference);
-        console.log("Best match difference: " + match.friendDifference);
+        console.log("Best match difference: " + bestMatch.friendDifference);
 
         var bestFriendScore = friends[i].scores.reduce((a, b) => a + b, 0);
 
@@ -55,7 +55,7 @@ module.exports = function (app) {
         totalDifference += Math.abs(sum - bestFriendScore);
         console.log("-------> --------> " + totalDifference);
 
-        if (totalDifference <= match.friendDifference) {
+        if (totalDifference <= bestMatch.friendDifference) {
 
             bestMatch.name = friends[i].name;
             bestMatch.photo = friends[i].photo;
@@ -66,11 +66,11 @@ module.exports = function (app) {
         console.log(totalDifference + " Total Difference");
     }
 
-    console.log(match);
+    console.log(bestMatch);
     friends.push(userData);
     console.log("New User Added");
     console.log(userData);
-    res.json(match);
+    res.json(bestMatch);
 
 });
 };
