@@ -7,12 +7,12 @@
 var friends = require("../data/friends.js");
 
 module.exports = function (app) {
-
+    // my git request for the api
     app.get("/api/friends", function (req, res) {
         res.json(friends);
 
     });
-
+// post my request to the api
     app.post("/api/friends", function (req, res) {
         var totalDifference = 0;
         var bestMatch = {
@@ -20,7 +20,7 @@ module.exports = function (app) {
             photo: "",
             friendDifference: 1000
         };
-  
+  // now convert the score into a interger instead of a sting
     var userData = req.body;
     var userName = userData.name;
     var userScores = userData.scores;
@@ -33,6 +33,7 @@ module.exports = function (app) {
         photo: req.body.photo,
         scores: b
     };
+    // console log the results of the info
     console.log("Name: " + userName);
     console.log("User Score " + userScores);
 
@@ -41,14 +42,14 @@ module.exports = function (app) {
     console.log("Best match friend diff " + bestMatch.friendDifference);
     console.log("---------------------------------------");
 
-    // run a for loop to cycle through the friends
+    // run a for loop to cycle through the friends in the data base so you can compare thenm
     for (var i = 0; i < friends.length; i++) {
         console.log(friends[i].name);        
         totalDifference = 0;
         console.log("Total Diff: " + totalDifference);
         console.log("Best match difference: " + match.friendDifference);
 
-        var bestFriendScore = users[i].scores.reduce((a, b) => a + b, 0);
+        var bestFriendScore = friends[i].scores.reduce((a, b) => a + b, 0);
 
         console.log("Total friend score: " + bestFriendScore);
         totalDifference += Math.abs(sum - bestFriendScore);
